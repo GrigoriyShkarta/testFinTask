@@ -7,4 +7,6 @@ export interface ITicker {
     dividend: number;
     yield: number;
     last_trade_time: string;
+
+    hidden: boolean;
 }

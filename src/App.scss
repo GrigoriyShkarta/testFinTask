@@ -1,0 +1,64 @@
+.App {
+  width: 60%;
+  margin: 100px auto;
+}
+
+.wrapper {
+  display: flex;
+  -webkit-box-orient: vertical;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+
+  .ticker {
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    border-top: 1px solid #e8eaed;
+    height: 48px;
+
+    &:last-child {
+      border-bottom: 1px solid #e8eaed;
+    }
+
+    .named {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      width: 10%;
+      flex-direction: column;
+      justify-content: center;
+
+      span {
+        font-size: 10px;
+        color: grey;
+      }
+    }
+
+    .info {
+      width: 80%;
+      display: flex;
+      justify-content: space-evenly;
+      animation: fadeIn ease-in .5s backwards;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.runLine {
+  display: flex;
+  margin-top: 100px;
+
+  p {
+    margin-left: 5px;
+  }
+}
+
+
+

@@ -2,6 +2,7 @@ import {ITicker} from "../../models/ITicker";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getTickers} from "./ActionCreators";
 import exp from "constants";
+import {tickersApi} from "../../services/TickersSercice";
 
 interface TickersState {
     tickers: ITicker[];
@@ -20,23 +21,28 @@ export const tickersSlice = createSlice({
     initialState,
     reducers: {
         setTickers(state, action) {
-            state.tickers = action.payload
+            if (state.tickers.length) {
+                state.tickers = state.tickers.map( ticker => {
+                    const newTicker = action.payload.tickers?.find((t:ITicker) => t.ticker === ticker.ticker);
+                    if (newTicker) {
+                        return {
+                            ...newTicker,
+                            hidden: ticker.hidden
+                        }
+                    }
+                    return ticker;
+                });
+            } else {
+                state.tickers = action.payload;
+            }
+        },
+        deleteTicker(state, action) {
+            state.tickers!.find(t => t.ticker === action.payload)!.hidden = true;
+        },
+        addTicker(state, action) {
+            state.tickers!.find(t => t.ticker === action.payload)!.hidden = false;
         }
-    },
-    // extraReducers:{
-    //     [getTickers.fulfilled.type]: (state, action: PayloadAction<ITicker[]>) => {
-    //         state.isLoading = false;
-    //         state.error = '';
-    //         state.tickers = action.payload;
-    //     },
-    //     [getTickers.rejected.type]: (state) => {
-    //         state.isLoading = true;
-    //     },
-    //     [getTickers.rejected.type]: (state, action: PayloadAction<string>) => {
-    //         state.isLoading = false;
-    //         state.error = action.payload;
-    //     }
-    // }
+    }
 })
 
 export default tickersSlice.reducer;
