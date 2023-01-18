@@ -1,8 +1,5 @@
 import {ITicker} from "../../models/ITicker";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getTickers} from "./ActionCreators";
-import exp from "constants";
-import {tickersApi} from "../../services/TickersSercice";
+import {createSlice} from "@reduxjs/toolkit";
 
 interface TickersState {
     tickers: ITicker[];
@@ -21,9 +18,10 @@ export const tickersSlice = createSlice({
     initialState,
     reducers: {
         setTickers(state, action) {
+            console.log(action.payload)
             if (state.tickers.length) {
                 state.tickers = state.tickers.map( ticker => {
-                    const newTicker = action.payload.tickers?.find((t:ITicker) => t.ticker === ticker.ticker);
+                    const newTicker = action.payload?.find((t:ITicker) => t.ticker === ticker.ticker);
                     if (newTicker) {
                         return {
                             ...newTicker,
@@ -36,11 +34,9 @@ export const tickersSlice = createSlice({
                 state.tickers = action.payload;
             }
         },
-        deleteTicker(state, action) {
-            state.tickers!.find(t => t.ticker === action.payload)!.hidden = true;
-        },
-        addTicker(state, action) {
-            state.tickers!.find(t => t.ticker === action.payload)!.hidden = false;
+        toggleHiddenTicker(state, action) {
+            state.tickers!.find(t => t.ticker === action.payload)!.hidden =
+                !state.tickers!.find(t => t.ticker === action.payload)!.hidden;
         }
     }
 })

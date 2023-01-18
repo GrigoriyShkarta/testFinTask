@@ -1,0 +1,24 @@
+.wrapperHiddenTickers {
+  margin-top: 50px;
+
+  h1 {
+    text-align: center;
+  }
+
+  .listHiddenTickers {
+    display: flex;
+    justify-content: center;
+
+    .newTickers {
+      margin-left: 10px;
+      background-color: yellow;
+      padding: 8px;
+      border-radius: 8px;
+
+      &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  -webkit-box-orient: vertical;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+
+  .redTicker, .greenTicker {
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    border-top: 1px solid #e8eaed;
+    height: 48px;
+
+    &:last-child {
+      border-bottom: 1px solid #e8eaed;
+    }
+
+    .named {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      width: 10%;
+      flex-direction: column;
+      justify-content: center;
+
+      span {
+        font-size: 10px;
+        color: grey;
+      }
+    }
+
+    .info {
+      width: 80%;
+      display: flex;
+      justify-content: space-evenly;
+      animation: fadeIn ease-in .5s backwards;
+    }
+
+    button {
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+    }
+  }
+
+  .redTicker {
+    background-color: #ff00005c;
+  }
+
+  .greenTicker {
+    background-color: #00800073;
+  }
+}
